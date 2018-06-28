@@ -1,0 +1,8 @@
+:host {
+    display: block;
+    margin-top: 1rem;
+}
+
+mat-expansion-panel-header {
+    margin: 20px 0;
+}
