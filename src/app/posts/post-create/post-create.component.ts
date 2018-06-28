@@ -1,5 +1,5 @@
-import { PostsService } from './../posts.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output} from '@angular/core';
+import { Post } from '../post.model';
 
 @Component({
     selector: 'app-post-create',
@@ -7,14 +7,15 @@ import { Component } from '@angular/core';
     styleUrls: ['./post-create.component.css']
 })
 export class PostCreateComponent {
+    enteredTitle = '';
+    enteredContent = '';
+    @Output() postCreated = new EventEmitter<Post>();
 
-    constructor(public postsService: PostsService) {}
-    enteredValue = '';
     onAddPost() {
-        this.postsService.postsList.push(this.enteredValue);
-    }
-
-    onDeletePost() {
-        this.postsService.postsList.pop();
+        const post: Post = {
+            title: this.enteredTitle,
+            content: this.enteredContent
+        };
+        this.postCreated.emit(post);
     }
 }
