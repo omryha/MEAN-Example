@@ -10,13 +10,13 @@ import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 
 @NgModule({
-  declarations: [ //Components
+  declarations: [ // Components
     AppComponent,
     PostCreateComponent,
     HeaderComponent,
     PostListComponent
   ],
-  imports: [ //Things we use like Material, PrimeNG & Modules
+  imports: [ // Things we use like Material, PrimeNG & Modules
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -25,7 +25,6 @@ import { PostListComponent } from './posts/post-list/post-list.component';
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule
-  
   ],
   providers: [],
   bootstrap: [AppComponent]
