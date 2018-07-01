@@ -1,0 +1,10 @@
+Backend:
+
+1. Open "Backend" folder in root.
+2. Create "server.js" in root.
+3. execute file: node server.js
+
+Add express.js:
+
+1. npm install --save express
+2. add "app.js" in backend folder
