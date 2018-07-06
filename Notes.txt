@@ -8,3 +8,6 @@ Add express.js:
 
 1. npm install --save express
 2. add "app.js" in backend folder
+3. server.js improvments
+4. Package for server watch: npm install --save-dev nodemon 
+5. Add to package.json - "start:sever": "nodemon server.js"
