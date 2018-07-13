@@ -29,3 +29,4 @@ MongoDB:
 2. Package to help connect to MongoDB using Schema: npm install --save mongoose
 3. Download Mongo Shell after establishing connection to the DB
 4. Run mongo "mongodb+srv://cluster0-ttxvy.mongodb.net/test" --username omry from program files x86/mongoDB
+5. Switch to node-angular (use node-angular)

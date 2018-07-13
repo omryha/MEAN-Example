@@ -32,11 +32,14 @@ app.post('/api/posts', (req, res, next) => {
 });
 
 app.get('/api/posts', (req, res, next) => {
-    const posts = [];
-    res.status(200).json({ // 2000 == Success
-        message: 'Posts fetched successfully',
-        posts: posts
-    });
+    Post.find()
+        .then(documents => {
+            res.status(200).json({ // 2000 == Success
+                message: 'Posts fetched successfully',
+                posts: documents
+            });
+        });
+
 });
 
 module.exports = app;
