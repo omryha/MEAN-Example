@@ -3,6 +3,7 @@ import { Post } from './post.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { log } from 'util';
 
 @Injectable({
   // Angular 6 syntax
@@ -49,5 +50,14 @@ export class PostsService {
         this.posts.push(post);
         this.postsUpdated.next([...this.posts]);
       });
+  }
+
+  deletePost(postId: string) {
+    this.http.delete('http://localhost:3000/api/posts/' + postId)
+    .subscribe(() => {
+      const updatedPosts = this.posts.filter(post => post.id !== postId);
+      this.posts = updatedPosts;
+      this.postsUpdated.next([...this.posts]);
+    });
   }
 }

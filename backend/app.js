@@ -39,7 +39,15 @@ app.get('/api/posts', (req, res, next) => {
                 posts: documents
             });
         });
+});
 
+app.delete("/api/posts/:id", (req, res, next) => {
+    //Update the MongoDB
+    Post.deleteOne({ _id: req.params.id }).then(result => {
+        console.log(result);
+        res.status(200).json({ messaqge: "Post Deleted!" });
+    });
+    res.status(200).json({ message: 'Post Deleted' });
 });
 
 module.exports = app;
