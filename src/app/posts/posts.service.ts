@@ -3,10 +3,6 @@ import { Post } from './post.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-<<<<<<< HEAD
-import { log } from 'util';
-=======
->>>>>>> 938af2f0e7a9f012de61a93c55ddb290100b561c
 
 @Injectable({
   // Angular 6 syntax
