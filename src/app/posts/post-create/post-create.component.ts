@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Post } from '../post.model';
+import { mimeType } from './mime-type.validator';
 
 @Component({
     selector: 'app-post-create',
@@ -17,6 +18,7 @@ export class PostCreateComponent implements OnInit {
     post: Post;
     isLoading = false;
     form: FormGroup;
+    imagePreview: string;
 
     constructor(public postsService: PostsService, public route: ActivatedRoute) { }
 
@@ -24,7 +26,7 @@ export class PostCreateComponent implements OnInit {
         this.form = new FormGroup({
             'title': new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
             'content': new FormControl(null, { validators: [Validators.required] }),
-            'image': new FormControl(null, { validators: [Validators.required] })
+            'image': new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
         });
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (paramMap.has('postId')) {
@@ -60,6 +62,10 @@ export class PostCreateComponent implements OnInit {
         const file = (event.target as HTMLInputElement).files[0];
         this.form.patchValue({image: file}); // pathValue can match only ONE property of the form and not all of them
         this.form.get('image').updateValueAndValidity();
-        console.log(file);
+        const reader = new FileReader();
+        reader.onload = () => { // Async code - takes a while
+            this.imagePreview = reader.result;
+        };
+        reader.readAsDataURL(file);
     }
 }
