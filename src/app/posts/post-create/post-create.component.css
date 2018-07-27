@@ -27,6 +27,6 @@ input[type="file"] {
     display: block;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, .55);
     border-radius: 10px;
-    height: 50%;
-    width: 50%;
+    height: 25%;
+    width: 25%;
 }
