@@ -54,3 +54,4 @@ Users collection:
 
 1. After creating the Schema and node.js files - npm install --save mongoose-unique-validator
 2. For passwords Encryption - npm install --save bcrypt
+3. For verifing if a token is valid - npm install --save jsonwebtoken
