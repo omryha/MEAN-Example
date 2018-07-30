@@ -16,5 +16,5 @@ const postSchema = mongoose.Schema({
     }
 });
 //Add this for using it outside of this mongoose file
-// Collection name is ALWAYS pluaral for model name (e.g posts)
+// Collection name is ALWAYS plural for model name (e.g posts)
 module.exports = mongoose.model('Post', postSchema);

@@ -52,8 +52,6 @@ export class PostsService {
     this.http.post<{ message: string, post: Post }>('http://localhost:3000/api/posts', postData)
       .subscribe((responseData) => {
         const post: Post = { id: responseData.post.id, title: title, content: content, imagePath: responseData.post.imagePath };
-        this.posts.push(post);
-        this.postsUpdated.next([...this.posts]);
         this.router.navigate(['/']);
       });
   }

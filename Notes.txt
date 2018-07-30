@@ -39,6 +39,7 @@ MongoDB:
 2. Package to help connect to MongoDB using Schema: npm install --save mongoose
 3. Download Mongo Shell after establishing connection to the DB
 4. Run "mongo mongodb+srv://cluster0-ttxvy.mongodb.net/test --username omry" from program files x86/mongoDB
+Password: MFUrGSWvptmiJPLc
 5. Switch to node-angular (use node-angular)
 
 For Image upload:
@@ -48,3 +49,8 @@ For Image upload:
 For allow access to images folder:
 
 1. require('path');
+
+Users collection:
+
+1. After creating the Schema and node.js files - npm install --save mongoose-unique-validator
+2. For passwords Encryption - npm install --save bcrypt
