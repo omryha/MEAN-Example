@@ -1,8 +1,9 @@
 ********************* START WORKING *******************
 
 1. ng serve
-2. npm run start:server ('Connected to DB)
-3. Mongo password: MFUrGSWvptmiJPLc (IGNORE ERRORS)
+2. npm run start:server ('Connected to DB')
+3. Run "mongo mongodb+srv://cluster0-ttxvy.mongodb.net/test --username omry" from program files/mongoDB
+Password: MFUrGSWvptmiJPLc
 
 Backend:
 
