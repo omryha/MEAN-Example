@@ -35,9 +35,15 @@ export class PostCreateComponent implements OnInit {
                 this.isLoading = true;
                 this.postsService.getPost(this.postId).subscribe(postData => {
                     this.isLoading = false;
-                    this.post = { id: postData._id, title: postData.title, content: postData.content, imagePath: postData.imagePath };
+                    this.post = {
+                        id: postData._id,
+                        title: postData.title,
+                        content: postData.content,
+                        imagePath: postData.imagePath,
+                        creator: postData.creator
+                    };
                 });
-                this.form.setValue({'title': this.post.title, 'content': this.post.content, image: this.post.imagePath});
+                this.form.setValue({ 'title': this.post.title, 'content': this.post.content, image: this.post.imagePath });
             } else {
                 this.mode = 'create';
                 this.postId = null;
@@ -65,7 +71,7 @@ export class PostCreateComponent implements OnInit {
 
     onImagePicked(event: Event) {
         const file = (event.target as HTMLInputElement).files[0];
-        this.form.patchValue({image: file}); // pathValue can match only ONE property of the form and not all of them
+        this.form.patchValue({ image: file }); // pathValue can match only ONE property of the form and not all of them
         this.form.get('image').updateValueAndValidity();
         const reader = new FileReader();
         reader.onload = () => { // Async code - takes a while
