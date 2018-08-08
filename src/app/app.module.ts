@@ -1,4 +1,4 @@
-import { MatInputModule, MatCardModule, MatButtonModule, MatPaginatorModule } from '@angular/material';
+import { MatInputModule, MatCardModule, MatButtonModule, MatPaginatorModule, MatDialogModule } from '@angular/material';
 import { MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule } from '@angular/material';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { ErrorInterceptor } from './error-interceptor';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [ // Components
@@ -21,7 +23,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     HeaderComponent,
     PostListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ErrorComponent
   ],
   imports: [ // Things we use like Material, PrimeNG & Modules
     BrowserModule,
@@ -36,9 +39,14 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     HttpClientModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent] // For components that are called without using a Selector or the Router
 })
 export class AppModule { }

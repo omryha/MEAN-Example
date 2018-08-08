@@ -18,7 +18,7 @@ router.post("/signup", (req, res, next) => {
             })
             .catch(err => {
                 res.status(500).json({
-                    error: err
+                    message: 'Invalid authentication credentials!'
                 });
             });
     });
@@ -26,9 +26,13 @@ router.post("/signup", (req, res, next) => {
 // Checks if user is registered in the DB
 router.post('/login', (req, res, next) => {
     let fetchedUser;
-    User.findOne({ email: req.body.email }).then(user => {
+    User.findOne({
+            email: req.body.email
+        }).then(user => {
             if (!user) {
-                return res.status(401).json({ message: "Auth Failed" });
+                return res.status(401).json({
+                    message: "Auth Failed"
+                });
             }
             fetchedUser = user;
             return bcrypt.compare(req.body.password, user.password);
@@ -53,7 +57,7 @@ router.post('/login', (req, res, next) => {
         })
         .catch(err => {
             return res.status(401).json({
-                message: "Auth failed"
+                message: "Invalid authentication credentials!"
             });
         });
 });

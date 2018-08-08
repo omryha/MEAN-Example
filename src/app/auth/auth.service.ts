@@ -33,8 +33,10 @@ export class AuthService {
       password: password
     };
     this.http.post('http://localhost:3000/api/user/signup', authData)
-      .subscribe(response => {
-        console.log(response);
+      .subscribe(() => {
+        this.router.navigate["/"];
+      }, error => {
+        this.authStatusListener.next(false);
       });
   }
 
@@ -51,14 +53,16 @@ export class AuthService {
           const expiresInDuration = response.expiresIn;
           // setTimeout works in milliseconds
           this.setAuthTimer(expiresInDuration);
-          this.authStatusListener.next(true);
           this.isAuthenticated = true;
           this.userId = response.userId;
+          this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           this.saveAuthData(token, expirationDate, this.userId);
           this.router.navigate(['/']);
         }
+      }, error => {
+        this.authStatusListener.next(false);
       });
   }
 

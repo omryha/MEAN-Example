@@ -1,28 +1,36 @@
 import { PostsService } from '../posts.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Post } from '../post.model';
 import { mimeType } from './mime-type.validator';
+import { Subscription } from '../../../../node_modules/rxjs';
+import { AuthService } from '../../auth/auth.service';
+import { THIS_EXPR } from '../../../../node_modules/@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'app-post-create',
     templateUrl: './post-create.component.html',
     styleUrls: ['./post-create.component.css']
 })
-export class PostCreateComponent implements OnInit {
-    enteredTitle = '';
-    enteredContent = '';
+export class PostCreateComponent implements OnInit, OnDestroy {
     private mode = 'create';
     private postId: string;
+    private authStatusSub: Subscription;
+    enteredContent = '';
+    enteredTitle = '';
     post: Post;
     isLoading = false;
     form: FormGroup;
     imagePreview: string;
 
-    constructor(public postsService: PostsService, public route: ActivatedRoute) { }
+    constructor(public postsService: PostsService, public route: ActivatedRoute, private authService: AuthService) { }
 
     ngOnInit() {
+        this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
+            authStatus => {
+                this.isLoading = false;
+            });
         this.form = new FormGroup({
             'title': new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
             'content': new FormControl(null, { validators: [Validators.required] }),
@@ -78,5 +86,9 @@ export class PostCreateComponent implements OnInit {
             this.imagePreview = reader.result;
         };
         reader.readAsDataURL(file);
+    }
+
+    ngOnDestroy() {
+        this.authStatusSub.unsubscribe();
     }
 }
