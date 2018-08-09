@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '../../../node_modules/@angular/router';
-import { Subject } from '../../../node_modules/rxjs';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
 
 @Injectable({
