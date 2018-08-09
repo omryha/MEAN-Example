@@ -1,5 +1,3 @@
-import { MatInputModule, MatCardModule, MatButtonModule, MatPaginatorModule, MatDialogModule } from '@angular/material';
-import { MatToolbarModule, MatExpansionModule, MatProgressSpinnerModule } from '@angular/material';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,6 +13,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
+import { AngulerMaterialModule } from './anguler-material.module';
 
 @NgModule({
   declarations: [ // Components
@@ -31,16 +30,9 @@ import { ErrorComponent } from './error/error.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
     ReactiveFormsModule,
-    MatPaginatorModule,
-    MatDialogModule
+    HttpClientModule,
+    AngulerMaterialModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
