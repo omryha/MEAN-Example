@@ -56,3 +56,12 @@ Users collection:
 1. After creating the Schema and node.js files - npm install --save mongoose-unique-validator
 2. For passwords Encryption - npm install --save bcrypt
 3. For verifing if a token is valid - npm install --save jsonwebtoken
+
+*** Deploying **
+
+1. Deploy 2 apps - Angular app (Static which serves HTML, JS, CSS - Firebase) and Node REST API app (Heroku, AWS EC2)
+   CORS Headers are required!
+2. Deploy 1 app combined - Node REST API which renders the Angular App too  (Heroku, AWS EC2)
+   CORS Headers are NOT required!
+
+We are using 2 localhosts - 3000 (server) and 4200 (Angular)
