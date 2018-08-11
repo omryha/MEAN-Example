@@ -65,3 +65,17 @@ Users collection:
    CORS Headers are NOT required!
 
 We are using 2 localhosts - 3000 (server) and 4200 (Angular)
+
+Server side deploying - with AWS Beanstalk:
+
+Error 1 - in creating environment => npm install --save bcryptjs
+Error 2 - Change Node.js command to "node server.js"
+Error 3- Add to MongoDB Whitelist the AWS ip
+
+Client side deploying:
+
+1. ng build --prod
+2. environments -> environment.prod.ts - add AWS url
+3. The files in the new directory are the one we will deploy
+4. Use AWS S3 (static cloud host)
+5. Create new bucket and upload the prod folder

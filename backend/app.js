@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://omry:" + process.env.MONGO_ATLAS_PW + "@cluster0
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/images', express.static(path.join('backend/images'))); // Grant access to the folder
+app.use('/images', express.static(path.join('images'))); // Grant access to the folder
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
